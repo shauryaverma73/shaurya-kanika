@@ -16,9 +16,9 @@
 
     body {
       font-family: 'Cormorant Garamond', serif;
-      height: 100vh;
-      overflow: hidden;
       color: white;
+      overflow: hidden;
+      height: 100vh;
     }
 
     .background {
@@ -28,13 +28,14 @@
         radial-gradient(
           circle,
           rgba(0,0,0,0.15) 20%,
-          rgba(0,0,0,0.65) 100%
+          rgba(0,0,0,0.70) 100%
         ),
         url('photos.JPG');
 
       background-size: cover;
-      background-position: center;
+      background-position: center 20%;
       background-repeat: no-repeat;
+
       animation: zoomBackground 20s ease-in-out infinite alternate;
     }
 
@@ -43,18 +44,21 @@
         transform: scale(1);
       }
       to {
-        transform: scale(1.08);
+        transform: scale(1.05);
       }
     }
 
     .container {
       position: relative;
       z-index: 1;
+      width: 100%;
       height: 100vh;
+
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
       text-align: center;
       padding: 20px;
     }
@@ -64,20 +68,29 @@
       letter-spacing: 6px;
       font-size: 1rem;
       margin-bottom: 20px;
+
       text-shadow:
-        0 2px 10px rgba(0,0,0,0.8);
+        0 2px 10px rgba(0,0,0,0.9);
     }
 
     .names {
       font-family: 'Great Vibes', cursive;
       font-size: clamp(4rem, 10vw, 8rem);
       line-height: 1.1;
-      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 25px;
 
       text-shadow:
-        0 4px 15px rgba(0,0,0,0.8),
-        0 8px 30px rgba(0,0,0,0.7),
-        0 12px 50px rgba(0,0,0,0.6);
+        0 5px 15px rgba(0,0,0,0.8),
+        0 10px 40px rgba(0,0,0,0.7),
+        0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    .and {
+      font-size: 0.5em;
+      margin: -15px 0;
     }
 
     .date {
@@ -91,38 +104,41 @@
 
     .countdown {
       display: flex;
-      justify-content: center;
-      gap: 16px;
+      gap: 18px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .box {
       width: 110px;
       min-height: 110px;
       padding: 20px;
-      border-radius: 24px;
 
-      background: rgba(255,255,255,0.14);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+
+      border: 1px solid rgba(255,255,255,0.20);
 
       box-shadow:
-        0 15px 40px rgba(0,0,0,0.45),
-        inset 0 1px 1px rgba(255,255,255,0.25);
+        0 20px 40px rgba(0,0,0,0.45),
+        inset 0 1px 1px rgba(255,255,255,0.20);
     }
 
     .number {
-      font-size: 2.6rem;
+      font-size: 2.5rem;
       font-weight: 600;
       text-shadow:
-        0 3px 12px rgba(0,0,0,0.7);
+        0 3px 10px rgba(0,0,0,0.7);
     }
 
     .label {
       margin-top: 10px;
       font-size: 12px;
-      letter-spacing: 2px;
       text-transform: uppercase;
+      letter-spacing: 2px;
+
       text-shadow:
         0 2px 8px rgba(0,0,0,0.7);
     }
@@ -130,13 +146,20 @@
     .footer {
       position: absolute;
       bottom: 35px;
+
       font-size: 1.1rem;
       letter-spacing: 2px;
+
       text-shadow:
         0 2px 10px rgba(0,0,0,0.8);
     }
 
+    /* Tablet */
     @media (max-width: 768px) {
+      .background {
+        background-position: center top;
+      }
+
       .names {
         font-size: 5rem;
       }
@@ -150,13 +173,19 @@
       .number {
         font-size: 2rem;
       }
-
-      .date {
-        font-size: 1.2rem;
-      }
     }
 
+    /* Mobile */
     @media (max-width: 480px) {
+      .background {
+        background-position: center top;
+      }
+
+      .container {
+        justify-content: flex-end;
+        padding-bottom: 110px;
+      }
+
       .save-date {
         font-size: 0.8rem;
         letter-spacing: 4px;
@@ -164,6 +193,10 @@
 
       .names {
         font-size: 3.5rem;
+      }
+
+      .and {
+        margin: -10px 0;
       }
 
       .date {
@@ -193,7 +226,6 @@
     }
   </style>
 </head>
-
 <body>
 
 <div class="background"></div>
@@ -205,7 +237,9 @@
   </div>
 
   <div class="names">
-    Shaurya & Kanika
+    <span>Shaurya</span>
+    <span class="and">&</span>
+    <span>Kanika</span>
   </div>
 
   <div class="date">
@@ -213,6 +247,7 @@
   </div>
 
   <div class="countdown">
+
     <div class="box">
       <div class="number" id="days">0</div>
       <div class="label">Days</div>
@@ -232,6 +267,7 @@
       <div class="number" id="seconds">0</div>
       <div class="label">Seconds</div>
     </div>
+
   </div>
 
   <div class="footer">
@@ -255,30 +291,25 @@
       return;
     }
 
-    const days = Math.floor(
-      distance / (1000 * 60 * 60 * 24)
-    );
-
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor(
       (distance % (1000 * 60 * 60 * 24)) /
       (1000 * 60 * 60)
     );
-
     const minutes = Math.floor(
       (distance % (1000 * 60 * 60)) /
       (1000 * 60)
     );
-
     const seconds = Math.floor(
       (distance % (1000 * 60)) / 1000
     );
 
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText =
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent =
       String(hours).padStart(2, "0");
-    document.getElementById("minutes").innerText =
+    document.getElementById("minutes").textContent =
       String(minutes).padStart(2, "0");
-    document.getElementById("seconds").innerText =
+    document.getElementById("seconds").textContent =
       String(seconds).padStart(2, "0");
   }
 

@@ -1,320 +1,642 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shaurya & Kanika</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaurya ❤️ Kanika</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    scroll-snap-type:y proximity;
+}
+
+body{
+    font-family:'Cormorant Garamond',serif;
+    background:#000;
+    color:#fff;
+    overflow-y:scroll;
+    scroll-behavior:smooth;
+    overscroll-behavior:none;
+}
+
+/* Sections */
+
+.section{
+    height:100vh;
+    width:100%;
+    position:relative;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+    overflow:hidden;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.hero-bg{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.55)),
+        url("photos.JPG");
+    background-size:cover;
+    background-position:center;
+    animation:zoomBg 18s ease-in-out infinite alternate;
+    transform:scale(1.1);
+}
+
+@keyframes zoomBg{
+    from{
+        transform:scale(1.1);
     }
-
-    body {
-      font-family: 'Cormorant Garamond', serif;
-      color: white;
-      overflow: hidden;
-      height: 100vh;
+    to{
+        transform:scale(1.25);
     }
+}
 
-    .background {
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(
-          circle,
-          rgba(0,0,0,0.15) 20%,
-          rgba(0,0,0,0.70) 100%
-        ),
-        url('photos.JPG');
+.hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    padding:20px;
+}
 
-      background-size: cover;
-      background-position: center 20%;
-      background-repeat: no-repeat;
+.save{
+    text-transform:uppercase;
+    letter-spacing:6px;
+    font-size:1rem;
+    margin-bottom:20px;
 
-      animation: zoomBackground 20s ease-in-out infinite alternate;
-    }
-
-    @keyframes zoomBackground {
-      from {
-        transform: scale(1);
-      }
-      to {
-        transform: scale(1.05);
-      }
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100vh;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      text-align: center;
-      padding: 20px;
-    }
-
-    .save-date {
-      text-transform: uppercase;
-      letter-spacing: 6px;
-      font-size: 1rem;
-      margin-bottom: 20px;
-
-      text-shadow:
+    text-shadow:
         0 2px 10px rgba(0,0,0,0.9);
-    }
+}
 
-    .names {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(4rem, 10vw, 8rem);
-      line-height: 1.1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 25px;
+.names{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(4rem,10vw,8rem);
+    line-height:1.1;
 
-      text-shadow:
+    text-shadow:
         0 5px 15px rgba(0,0,0,0.8),
         0 10px 40px rgba(0,0,0,0.7),
         0 20px 60px rgba(0,0,0,0.6);
-    }
+}
 
-    .and {
-      font-size: 0.5em;
-      margin: -15px 0;
-    }
+.and{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(2.5rem,4vw,4rem);
+    line-height:1;
+    margin:-10px 0;
 
-    .date {
-      font-size: 1.4rem;
-      letter-spacing: 4px;
-      margin-bottom: 45px;
+    text-shadow:
+        0 5px 15px rgba(0,0,0,0.8),
+        0 10px 40px rgba(0,0,0,0.7),
+        0 20px 60px rgba(0,0,0,0.6);
+}
+.date{
+    font-size:1.4rem;
+    letter-spacing:4px;
+    margin-top:20px;
+    margin-bottom:45px;
 
-      text-shadow:
+    text-shadow:
         0 2px 10px rgba(0,0,0,0.8);
-    }
+}
 
-    .countdown {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+.timer{
+    margin-top:45px;
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
 
-    .box {
-      width: 110px;
-      min-height: 110px;
-      padding: 20px;
+.time-box{
+    width:110px;
+    min-height:110px;
+    padding:20px;
 
-      border-radius: 24px;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
+    border-radius:24px;
+    background:rgba(255,255,255,0.15);
 
-      border: 1px solid rgba(255,255,255,0.20);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
 
-      box-shadow:
+    border:1px solid rgba(255,255,255,0.20);
+
+    box-shadow:
         0 20px 40px rgba(0,0,0,0.45),
         inset 0 1px 1px rgba(255,255,255,0.20);
-    }
+}
+.time-box h2{
+    font-size:2.5rem;
+    font-weight:600;
 
-    .number {
-      font-size: 2.5rem;
-      font-weight: 600;
-      text-shadow:
+    text-shadow:
         0 3px 10px rgba(0,0,0,0.7);
-    }
+}
 
-    .label {
-      margin-top: 10px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+.time-box span{
+    margin-top:10px;
+    display:block;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:2px;
 
-      text-shadow:
+    text-shadow:
         0 2px 8px rgba(0,0,0,0.7);
+}
+
+/* Floating particles */
+
+.particle{
+    position:absolute;
+    top:-50px;
+    color:#ff4d6d;
+    font-size:18px;
+    pointer-events:none;
+    opacity:0.8;
+    text-shadow:
+        0 0 8px rgba(255,77,109,.7),
+        0 0 16px rgba(255,77,109,.4);
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    from{
+        transform:
+            translateY(-100px)
+            rotate(0deg);
+    }
+    to{
+        transform:
+            translateY(calc(100vh + 150px))
+            rotate(360deg);
+    }
+}
+
+/* ================= GALLERY ================= */
+
+.gallery{
+    position:sticky;
+    top:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    perspective:1200px;
+    height:100vh;
+}
+
+.gallery-scroll-space{
+    height:50vh;
+}
+
+.gallery::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.65)
+        ),
+        url("https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=2000&q=80");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    z-index:0;
+}
+
+.gallery-title{
+    position:absolute;
+    top:50px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:5;
+
+    font-family:'Great Vibes',cursive;
+    font-size:65px;
+
+    text-shadow:
+        0 5px 15px rgba(0,0,0,0.8),
+        0 10px 40px rgba(0,0,0,0.7);
+}
+
+.gallery-wrapper{
+    width:1400px;
+    max-width:90vw;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+
+    transform-style:preserve-3d;
+}
+
+.gallery-wrapper img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    border-radius:25px;
+    box-shadow:0 20px 50px rgba(0,0,0,.45);
+
+    opacity:0;
+    filter:blur(6px);
+
+transform:
+    translateZ(-1000px)
+    scale(.3)
+    translateY(120px);
+    transition:
+        transform .15s linear,
+        opacity .15s linear,
+        filter .15s linear;
+}
+
+.gallery-wrapper img:hover{
+    transform:scale(1.05);
+}
+
+.gallery-wrapper img:nth-child(2),
+.gallery-wrapper img:nth-child(5){
+    height:400px;
+}
+
+.gallery-wrapper img:nth-child(3){
+    margin-top:70px;
+}
+
+.gallery-wrapper img:nth-child(7){
+    margin-top:-50px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .names{
+        font-size:5rem;
     }
 
-    .footer {
-      position: absolute;
-      bottom: 35px;
+    .time-box{
+        width:90px;
+        min-height:90px;
+        padding:15px;
+    }
 
-      font-size: 1.1rem;
-      letter-spacing: 2px;
+    .time-box h2{
+        font-size:2rem;
+    }
+}
 
-      text-shadow:
+
+@media(max-width:768px){
+
+    .gallery-wrapper{
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
+    }
+
+    .gallery-wrapper img{
+        height:180px;
+    }
+
+    .gallery-wrapper img:nth-child(2),
+    .gallery-wrapper img:nth-child(5){
+        height:250px;
+    }
+
+    .gallery-wrapper img:nth-child(3),
+    .gallery-wrapper img:nth-child(7){
+        margin-top:0;
+    }
+}
+
+@media(max-width:500px){
+    .gallery-wrapper{
+        grid-template-columns:1fr;
+        width:85vw;
+    }
+
+    .gallery-wrapper img{
+        height:220px;
+    }
+}
+
+.tagline{
+    margin-top:35px;
+    font-size:1.1rem;
+    letter-spacing:2px;
+
+    text-shadow:
         0 2px 10px rgba(0,0,0,0.8);
+
+    animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
     }
-
-    /* Tablet */
-    @media (max-width: 768px) {
-      .background {
-        background-position: center top;
-      }
-
-      .names {
-        font-size: 5rem;
-      }
-
-      .box {
-        width: 90px;
-        min-height: 90px;
-        padding: 15px;
-      }
-
-      .number {
-        font-size: 2rem;
-      }
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
+}
 
-    /* Mobile */
-    @media (max-width: 480px) {
-      .background {
-        background-position: center top;
-      }
-
-      .container {
-        justify-content: flex-end;
-        padding-bottom: 110px;
-      }
-
-      .save-date {
-        font-size: 0.8rem;
-        letter-spacing: 4px;
-      }
-
-      .names {
-        font-size: 3.5rem;
-      }
-
-      .and {
-        margin: -10px 0;
-      }
-
-      .date {
-        font-size: 1rem;
-        letter-spacing: 2px;
-      }
-
-      .box {
-        width: 72px;
-        min-height: 72px;
-        padding: 12px;
-      }
-
-      .number {
-        font-size: 1.4rem;
-      }
-
-      .label {
-        font-size: 9px;
-        letter-spacing: 1px;
-      }
-
-      .footer {
-        font-size: 0.9rem;
-        bottom: 20px;
-      }
+@media(max-width:768px){
+    .tagline{
+        font-size:20px;
+        padding:0 20px;
     }
-  </style>
+}
+
+</style>
 </head>
 <body>
 
-<div class="background"></div>
+<section class="section hero">
 
-<div class="container">
+    <div class="hero-bg"></div>
 
-  <div class="save-date">
-    Save The Date
-  </div>
+    <div class="hero-content">
 
-  <div class="names">
-    <span>Shaurya</span>
-    <span class="and">&</span>
-    <span>Kanika</span>
-  </div>
+        <div class="save">Save The Date</div>
 
-  <div class="date">
-    22 November 2026
-  </div>
+        <div class="names">Shaurya</div>
+        <div class="and">&</div>
+        <div class="names">Kanika</div>
 
-  <div class="countdown">
+        <div class="date">
+            And so our forever begins...<br>
+            22 November 2026
+        </div>
 
-    <div class="box">
-      <div class="number" id="days">0</div>
-      <div class="label">Days</div>
+        <div class="timer">
+
+            <div class="time-box">
+                <h2 id="days">0</h2>
+                <span>DAYS</span>
+            </div>
+
+            <div class="time-box">
+                <h2 id="hours">0</h2>
+                <span>HOURS</span>
+            </div>
+
+            <div class="time-box">
+                <h2 id="minutes">0</h2>
+                <span>MINUTES</span>
+            </div>
+
+            <div class="time-box">
+                <h2 id="seconds">0</h2>
+                <span>SECONDS</span>
+            </div>
+
+        </div>
+
+        <div class="tagline">
+            Our Forever Begins ❤️
+        </div>
+
     </div>
 
-    <div class="box">
-      <div class="number" id="hours">0</div>
-      <div class="label">Hours</div>
+</section>
+
+<section class="section gallery">
+
+    <div class="gallery-title">
+        Our Memories
     </div>
 
-    <div class="box">
-      <div class="number" id="minutes">0</div>
-      <div class="label">Minutes</div>
+    <div class="gallery-wrapper" id="gallery">
+
+        <img src="https://picsum.photos/600/800?random=1">
+        <img src="https://picsum.photos/600/900?random=2">
+        <img src="https://picsum.photos/700/800?random=3">
+        <img src="https://picsum.photos/600/850?random=4">
+        <img src="https://picsum.photos/700/900?random=5">
+        <img src="https://picsum.photos/600/700?random=6">
+        <img src="https://picsum.photos/650/850?random=7">
+        <img src="https://picsum.photos/700/950?random=8">
+
     </div>
 
-    <div class="box">
-      <div class="number" id="seconds">0</div>
-      <div class="label">Seconds</div>
-    </div>
+</section>
 
-  </div>
-
-  <div class="footer">
-    Our Forever Begins ❤️
-  </div>
-
-</div>
+<div class="gallery-scroll-space"></div>
 
 <script>
-  const weddingDate = new Date(
-    "November 22, 2026 00:00:00"
-  ).getTime();
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
+/* Countdown */
 
-    if (distance <= 0) {
-      document.querySelector(".countdown").innerHTML =
-        "<h1>🎉 Just Married ❤️</h1>";
+const weddingDate = new Date("November 22, 2026 00:00:00");
+
+function updateTimer(){
+
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const minutes = Math.floor((diff / (1000*60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('days').innerText = days;
+    document.getElementById('hours').innerText = hours;
+    document.getElementById('minutes').innerText = minutes;
+    document.getElementById('seconds').innerText = seconds;
+}
+
+setInterval(updateTimer,1000);
+updateTimer();
+
+/* Floating particles */
+
+for(let i=0;i<40;i++){
+
+    const p = document.createElement('div');
+    p.classList.add('particle');
+
+    p.style.left = Math.random()*100 + "%";
+    p.style.animationDuration = (8 + Math.random()*8) + "s";
+    p.style.animationDelay = Math.random()*5 + "s";
+
+    document.querySelector('.hero').appendChild(p);
+}
+
+/* Gallery zoom-out effect */
+
+const galleryImages =
+    document.querySelectorAll(
+        '.gallery-wrapper img'
+    );
+
+window.addEventListener('scroll', () => {
+
+const galleryTop = gallery.offsetTop;
+const scrollDistance = window.innerHeight * 1.5;
+
+const progress = Math.min(
+    Math.max(
+        (window.scrollY - galleryTop) /
+        scrollDistance,
+        0
+    ),
+    1
+);
+
+    galleryImages.forEach((img, index) => {
+
+        const delay = index * 0.08;
+
+        let p = progress - delay;
+        p = Math.max(0, Math.min(p * 2, 1));
+
+const depths = [
+    -4000,
+    -3500,
+    -3000,
+    -2500,
+    -2000,
+    -1500,
+    -1000,
+    -500
+];
+
+const z =
+    depths[index] +
+    p * Math.abs(depths[index]);
+
+        const scale =
+            0.2 + p * 1.2;
+
+        const blur =
+            15 - p * 15;
+
+        img.style.transform = `
+            translateZ(${z}px)
+            scale(${scale})
+        `;
+
+        img.style.opacity = p;
+        img.style.filter =
+            `blur(${blur}px)`;
+    });
+
+});
+
+/* Floating Hearts */
+
+for(let i = 0; i < 35; i++){
+
+    const heart = document.createElement('div');
+    heart.classList.add('particle');
+    heart.innerHTML = '❤';
+
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.fontSize = (12 + Math.random() * 16) + 'px';
+    heart.style.animationDuration = (8 + Math.random() * 12) + 's';
+    heart.style.animationDelay = Math.random() * 10 + 's';
+    heart.style.opacity = 0.4 + Math.random() * 0.6;
+
+    document.querySelector('.hero').appendChild(heart);
+}
+
+let isScrolling = false;
+
+window.addEventListener(
+  "wheel",
+  (e) => {
+    // Only apply on Hero section
+    if (window.scrollY >= window.innerHeight - 50) {
       return;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) /
-      (1000 * 60 * 60)
-    );
-    const minutes = Math.floor(
-      (distance % (1000 * 60 * 60)) /
-      (1000 * 60)
-    );
-    const seconds = Math.floor(
-      (distance % (1000 * 60)) / 1000
-    );
+    if (isScrolling) {
+      e.preventDefault();
+      return;
+    }
 
-    document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent =
-      String(hours).padStart(2, "0");
-    document.getElementById("minutes").textContent =
-      String(minutes).padStart(2, "0");
-    document.getElementById("seconds").textContent =
-      String(seconds).padStart(2, "0");
-  }
+    if (e.deltaY > 30) {
+      e.preventDefault();
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+      isScrolling = true;
+
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: "smooth"
+      });
+
+      setTimeout(() => {
+        isScrolling = false;
+      }, 1000);
+    }
+  },
+  { passive: false }
+);
+
+let touchStartY = 0;
+
+window.addEventListener("touchstart", e => {
+    touchStartY = e.touches[0].clientY;
+});
+
+window.addEventListener("touchend", e => {
+
+    const touchEndY = e.changedTouches[0].clientY;
+    const diff = touchStartY - touchEndY;
+    const heroBottom = window.innerHeight;
+
+    if (Math.abs(diff) < 50) return;
+
+    // Swipe up
+    if (
+        diff > 0 &&
+        window.scrollY < heroBottom - 50
+    ) {
+        window.scrollTo({
+            top: heroBottom,
+            behavior: "smooth"
+        });
+    }
+
+    // Swipe down
+    if (
+        diff < 0 &&
+        window.scrollY <= heroBottom + 50 &&
+        window.scrollY > 0
+    ) {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+});
+
+img.style.transform = `
+    translateY(${100 - p * 100}px)
+    scale(${scale})
+`;
 </script>
 
 </body>

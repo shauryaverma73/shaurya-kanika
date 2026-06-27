@@ -369,6 +369,33 @@ transform:
     }
 }
 
+/* Falling Hearts */
+.particle {
+  position: fixed;
+  top: -50px;
+  color: #ff4d6d;
+  pointer-events: none;
+  z-index: 0;
+  text-shadow:
+    0 0 8px rgba(255,77,109,.7),
+    0 0 16px rgba(255,77,109,.4);
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-100px) rotate(0deg);
+  }
+  to {
+    transform: translateY(calc(100vh + 150px)) rotate(360deg);
+  }
+}
+
+/* Keep content above hearts */
+.container {
+  z-index: 10;
+}
+    
 </style>
 </head>
 <body>
@@ -637,6 +664,29 @@ img.style.transform = `
     translateY(${100 - p * 100}px)
     scale(${scale})
 `;
+
+    /* Floating Hearts */
+for (let i = 0; i < 35; i++) {
+  const heart = document.createElement("div");
+  heart.classList.add("particle");
+  heart.innerHTML = "❤";
+
+  heart.style.left = Math.random() * 100 + "%";
+  heart.style.fontSize =
+    (12 + Math.random() * 16) + "px";
+
+  heart.style.animationDuration =
+    (8 + Math.random() * 12) + "s";
+
+  heart.style.animationDelay =
+    Math.random() * 10 + "s";
+
+  heart.style.opacity =
+    0.4 + Math.random() * 0.6;
+
+  document.body.appendChild(heart);
+}
+    
 </script>
 
 </body>
